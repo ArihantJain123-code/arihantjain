@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arihant Jain | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a class="logo" href="#home">Arihant <span>Jain</span></a>
+        <button class="nav-toggle" type="button" aria-expanded="false" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="resume-builder.html">Resume Builder</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <p class="eyebrow">B.Tech Student | Full-Stack Learner | Builder</p>
+            <h1>Designing practical web experiences and tools that make student life easier.</h1>
+            <p class="hero-copy">
+                I am Arihant Jain, an aspiring software engineer focused on building clean interfaces,
+                useful products, and hands-on projects that sharpen both problem solving and delivery.
+            </p>
+            <div class="hero-actions">
+                <a href="#projects" class="btn">See Projects</a>
+                <a href="resume-builder.html" class="btn btn-secondary">Open Resume Builder</a>
+            </div>
+            <div class="hero-metrics">
+                <div class="metric-card">
+                    <strong>3+</strong>
+                    <span>Portfolio-ready builds</span>
+                </div>
+                <div class="metric-card">
+                    <strong>Web Dev</strong>
+                    <span>HTML, CSS, JS focus</span>
+                </div>
+                <div class="metric-card">
+                    <strong>Open To</strong>
+                    <span>Internships and freelance work</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="about" class="container section-shell">
+            <div class="section-heading">
+                <p class="eyebrow">About</p>
+                <h2>Building a strong software foundation through real projects.</h2>
+            </div>
+            <div class="about-grid">
+                <div class="glass-card">
+                    <p>
+                        I enjoy turning ideas into polished digital experiences, especially projects that
+                        combine frontend clarity with practical functionality. My current focus is growing
+                        as a developer through portfolio work, UI improvement, and project-based learning.
+                    </p>
+                </div>
+                <div class="glass-card">
+                    <ul class="detail-list">
+                        <li>Strong interest in full-stack development and product thinking.</li>
+                        <li>Comfortable with responsive UI building and JavaScript-based logic.</li>
+                        <li>Actively improving deployment, collaboration, and project presentation skills.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section-band">
+            <div class="container section-shell">
+                <div class="section-heading">
+                    <p class="eyebrow">Skills</p>
+                    <h2>Tools and technologies I am using to grow faster.</h2>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-card">HTML5</div>
+                    <div class="skill-card">CSS3</div>
+                    <div class="skill-card">JavaScript</div>
+                    <div class="skill-card">Python</div>
+                    <div class="skill-card">C++</div>
+                    <div class="skill-card">SQL</div>
+                    <div class="skill-card">Git & GitHub</div>
+                    <div class="skill-card">Responsive Design</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="container section-shell">
+            <div class="section-heading">
+                <p class="eyebrow">Projects</p>
+                <h2>A few things I have been shaping and refining.</h2>
+            </div>
+            <div class="project-grid">
+                <article class="project-card featured">
+                    <p class="project-tag">Featured Tool</p>
+                    <h3>Resume Builder</h3>
+                    <p>
+                        A browser-based resume builder with live preview, printable layout, and a simple
+                        form flow designed for students and freshers.
+                    </p>
+                    <a href="resume-builder.html">Launch project</a>
+                </article>
+                <article class="project-card">
+                    <p class="project-tag">Vision Project</p>
+                    <h3>Smart Attendance System</h3>
+                    <p>
+                        A concept for automating attendance with computer vision, focused on accuracy,
+                        time saving, and a smoother admin workflow.
+                    </p>
+                    <a href="#contact">Ask me about it</a>
+                </article>
+                <article class="project-card">
+                    <p class="project-tag">Commerce Concept</p>
+                    <h3>E-Commerce Web App</h3>
+                    <p>
+                        A full-stack storefront idea centered on secure checkout, product browsing, and
+                        scalable architecture for modern online retail.
+                    </p>
+                    <a href="#contact">View roadmap</a>
+                </article>
+            </div>
+        </section>
+
+        <section id="contact" class="section-band">
+            <div class="container section-shell contact-panel">
+                <div>
+                    <p class="eyebrow">Contact</p>
+                    <h2>Let's connect for internships, projects, or collaboration.</h2>
+                </div>
+                <div class="contact-links">
+                    <a href="mailto:arihant@example.com">arihant@example.com</a>
+                    <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn Profile</a>
+                    <a href="resume-builder.html">Try the Resume Builder</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> Arihant Jain. Built with curiosity and consistency.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
