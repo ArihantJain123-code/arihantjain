@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder - Create Your Professional Resume</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        .resume-builder-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 40px 5%;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .form-section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .preview-section {
+            padding: 40px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            max-height: 90vh;
+            overflow-y: auto;
+            position: sticky;
+            top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            color: #007bff;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+
+        .section-title:first-child {
+            margin-top: 0;
+        }
+
+        .entry-block {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+        }
+
+        .btn-add {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn-add:hover {
+            background: #218838;
+        }
+
+        .btn-remove {
+            background: #dc3545;
+            color: white;
+            padding: 5px 12px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+
+        .btn-remove:hover {
+            background: #c82333;
+        }
+
+        .btn-export {
+            background: #007bff;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: background 0.3s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn-export:hover {
+            background: #0056b3;
+        }
+
+        /* Resume Preview Styles */
+        .resume-preview {
+            background: white;
+            padding: 40px;
+            font-family: 'Georgia', serif;
+            color: #333;
+            line-height: 1.8;
+        }
+
+        .resume-header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .resume-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .resume-contact {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .resume-section {
+            margin-bottom: 20px;
+        }
+
+        .resume-section-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #007bff;
+            border-bottom: 1px solid #007bff;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .resume-entry {
+            margin-bottom: 12px;
+        }
+
+        .resume-entry-title {
+            font-weight: bold;
+            font-size: 13px;
+        }
+
+        .resume-entry-subtitle {
+            font-style: italic;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .resume-entry-description {
+            font-size: 12px;
+            margin-top: 4px;
+            color: #555;
+        }
+
+        .resume-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: #e8f0ff;
+            color: #007bff;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 1024px) {
+            .resume-builder-container {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-section {
+                position: static;
+                max-height: none;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            .form-section,
+            .btn-export,
+            .btn-add,
+            .btn-remove {
+                display: none;
+            }
+
+            .preview-section {
+                box-shadow: none;
+                position: static;
+                max-height: none;
+            }
+
+            .resume-preview {
+                padding: 0;
+            }
+        }
+
+        .empty-message {
+            color: #999;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        h1.page-title {
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+        }
+
+        .hero-section-builder {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 5%;
+            text-align: center;
+        }
+
+        .hero-section-builder h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .hero-section-builder p {
+            font-size: 1.1rem;
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Arihant <span>Jain</span></div>
+        <ul class="nav-links">
+            <li><a href="INDEX.HTML">Home</a></li>
+            <li><a href="resume-builder.html">Resume Builder</a></li>
+            <li><a href="INDEX.HTML#skills">Skills</a></li>
+            <li><a href="INDEX.HTML#projects">Projects</a></li>
+            <li><a href="INDEX.HTML#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="hero-section-builder">
+        <h1>📄 Professional Resume Builder</h1>
+        <p>Create your perfect resume in minutes - just fill in your details and see it update in real-time!</p>
+    </div>
+
+    <div class="resume-builder-container">
+        <!-- Form Section -->
+        <div class="form-section">
+            <h2 style="margin-top: 0;">Build Your Resume</h2>
+
+            <!-- Personal Information -->
+            <div class="section-title">👤 Personal Information</div>
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="John Doe" oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="john@example.com" oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" placeholder="+1 (555) 123-4567" oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <input type="text" id="location" placeholder="City, Country" oninput="updatePreview()">
+            </div>
+            <div class="form-group">
+                <label for="summary">Professional Summary</label>
+                <textarea id="summary" placeholder="A brief overview of your professional background and goals..." oninput="updatePreview()"></textarea>
+            </div>
+
+            <!-- Education -->
+            <div class="section-title">🎓 Education</div>
+            <div id="educationContainer"></div>
+            <button class="btn-add" onclick="addEducation()">+ Add Education</button>
+
+            <!-- Experience -->
+            <div class="section-title">💼 Work Experience</div>
+            <div id="experienceContainer"></div>
+            <button class="btn-add" onclick="addExperience()">+ Add Experience</button>
+
+            <!-- Skills -->
+            <div class="section-title">⭐ Skills</div>
+            <div class="form-group">
+                <label for="skillsInput">Enter skills (comma-separated)</label>
+                <textarea id="skillsInput" placeholder="JavaScript, React, Node.js, MongoDB, Python..." oninput="updatePreview()"></textarea>
+            </div>
+
+            <!-- Certifications -->
+            <div class="section-title">🏆 Certifications</div>
+            <div id="certificationContainer"></div>
+            <button class="btn-add" onclick="addCertification()">+ Add Certification</button>
+
+            <!-- Export Options -->
+            <button class="btn-export" onclick="downloadPDF()">📥 Download as PDF</button>
+            <button class="btn-export" onclick="printResume()" style="background: #6c757d;">🖨️ Print Resume</button>
+        </div>
+
+        <!-- Preview Section -->
+        <div class="preview-section">
+            <div class="resume-preview" id="resumePreview">
+                <div class="resume-header">
+                    <div class="resume-name" id="previewName">Your Name</div>
+                    <div class="resume-contact" id="previewContact">email@example.com | +1 (555) 123-4567 | City, Country</div>
+                </div>
+
+                <div id="previewSummary" class="resume-section" style="display: none;">
+                    <div class="resume-section-title">Professional Summary</div>
+                    <div id="summaryText" class="resume-entry-description"></div>
+                </div>
+
+                <div id="previewExperience" class="resume-section" style="display: none;">
+                    <div class="resume-section-title">Work Experience</div>
+                    <div id="experiencePreview"></div>
+                </div>
+
+                <div id="previewEducation" class="resume-section" style="display: none;">
+                    <div class="resume-section-title">Education</div>
+                    <div id="educationPreview"></div>
+                </div>
+
+                <div id="previewSkills" class="resume-section" style="display: none;">
+                    <div class="resume-section-title">Skills</div>
+                    <div class="resume-skills" id="skillsPreview"></div>
+                </div>
+
+                <div id="previewCertification" class="resume-section" style="display: none;">
+                    <div class="resume-section-title">Certifications</div>
+                    <div id="certificationPreview"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="resume-builder.js"></script>
+
+</body>
+</html>
